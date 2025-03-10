@@ -70,7 +70,7 @@ class UserController extends Controller
             'message' => 'Profile updated successfully',
             'user' => $user,
             'profile_picture_name' => basename($filePath),
-            'profile_picture_link' => asset($filePath) // Generate accessible URL
+            'profile_picture_link' => url($filePath) // Generate accessible URL
         ]);
     }
     
