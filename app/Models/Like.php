@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\User;
 
-class Post extends Model
+class Like extends Model
 {
     //
     use HasFactory, SoftDeletes;
-    protected $fillable = [
-        'user_id',
-        'image',
-        'content'
-    ];
+
+    protected $fillable = ['user_id', 'post_id'];
 
     protected $dates = ['deleted_at'];
 
@@ -24,13 +20,8 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function likes()
+    public function post()
     {
-        return $this->hasMany(Like::class);
-    }
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Post::class);
     }
 }
