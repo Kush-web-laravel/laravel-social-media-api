@@ -27,7 +27,8 @@ class User extends Authenticatable
         'bio',
         'date_of_birth',
         'gender',
-        'location'
+        'location',
+        'is_public',
     ];
 
     /**
@@ -68,4 +69,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function followingUsers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
+    }
+
+    public function followerUsers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
+    }
+
 }

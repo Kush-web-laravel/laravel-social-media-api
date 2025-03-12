@@ -12,11 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_picture')->after('email')->nullable();
-            $table->date('date_of_birth')->after('profile_picture')->nullable();
-            $table->enum('gender', ['male', 'female', 'other'])->after('date_of_birth');
-            $table->text('bio')->after('gender')->nullable();
-            $table->string('location')->after('bio')->nullable();
+            //
+            $table->tinyInteger('is_public')->default(0); // 0 = Public, 1 = Private
         });
     }
 
@@ -26,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['profile_picture', 'date_of_birth', 'gender', 'bio', 'location']);
+            //
+            $table->dropColumn('is_public');
         });
     }
 };

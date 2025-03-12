@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\FollowController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\LikeController;
+use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,4 +38,8 @@ Route::middleware('auth:sanctum')->group(function(){
         });
        
     });
+    Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
+    Route::post('/unfollow', [FollowController::class, 'unfollow'])->name('unfollow');
+    Route::post('/pending-requests', [FollowController::class, 'pendingRequests'])->name('pendingRequests');
+    Route::post('/accept-request', [FollowController::class, 'acceptRequest'])->name('acceptRequest');
 });

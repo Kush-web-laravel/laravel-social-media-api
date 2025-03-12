@@ -18,7 +18,8 @@ class UserController extends Controller
             'bio' => 'string|max:200',
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:male,female,other',
-            'location' => 'required|string'
+            'location' => 'required|string',
+            'is_public' => 'nullable|integer'
         ]);
     
         $user = auth()->user();
@@ -62,7 +63,8 @@ class UserController extends Controller
             'bio' => $validatedData['bio'],
             'date_of_birth' => $validatedData['date_of_birth'],
             'gender' => $validatedData['gender'],
-            'location' => $validatedData['location']
+            'location' => $validatedData['location'],
+            'is_public' => $validatedData['is_public'],
         ]);
     
         return response()->json([
